@@ -6,8 +6,10 @@
   :version "0.0.1"
   :pathname "src/"
   :serial t
-  :depends-on (:restas :postmodern :closure-template)
+  :depends-on (:restas :postmodern :closure-template :cl-github-v3)
   :components ((:file "package")
+               (:file "author")
+               (:file "code")
                (:file "motokode"))
   :in-order-to ((test-op (load-op famiclom-tests)))
   :perform (test-op :after (op c)
