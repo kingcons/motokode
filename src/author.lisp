@@ -10,4 +10,3 @@
    (location :col-type string :initarg :location :accessor author-location))
   (:metaclass postmodern:dao-class)
   (:keys email))
-

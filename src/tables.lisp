@@ -1,7 +1,7 @@
 (defpackage :motokode-db
   (:use :cl :motokode)
   (:import-from :postmodern #:deftable
-                            #:dao-def
+                            #:!dao-def
                             #:!foreign))
 
 (in-package :motokode-db)
@@ -15,3 +15,5 @@
 (deftable project (!dao-def))
 (deftable snippet (!dao-def))
 (deftable raw (!dao-def))
+
+(deftable user (!dao-def))
