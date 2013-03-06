@@ -6,7 +6,8 @@
   :version "0.0.1"
   :pathname "src/"
   :serial t
-  :depends-on (:restas :postmodern :closure-template :cl-github-v3 :zs3)
+  :depends-on (:restas :postmodern :closure-template
+               :inferior-shell :zs3 :cl-github-v3)
   :components ((:file "package")
                (:file "author")
                (:file "code")

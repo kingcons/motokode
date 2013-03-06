@@ -1,2 +1,3 @@
 (defpackage #:motokode
-  (:use #:cl))
+  (:use #:cl)
+  (:export #:run-program))

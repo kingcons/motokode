@@ -37,3 +37,7 @@
 (defclass raw (code)
   ((content :col-type string :initarg :content :accessor raw-content))
   (:metaclass postmodern:dao-class))
+
+(defun highlight (file)
+  "Syntax highlight FILE using Python's Pygments."
+  (motokode:run-program "pygmentize -O linenos=table -f html ~a" code))
