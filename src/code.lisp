@@ -1,4 +1,10 @@
-(in-package :motokode)
+(defpackage :motokode.code
+  (:use :cl)
+  (:import-from :postmodern #:insert-dao)
+  (:import-from :zs3 #:all-keys #:etag #:file-etag #:put-file)
+  (:export #:code #:project #:snippet #:raw))
+
+(in-package :motokode.code)
 
 ;; github repo has:
 ;; FORK - we probably want to only pull in original stuff, not forks

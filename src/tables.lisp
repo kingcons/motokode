@@ -1,10 +1,16 @@
-(defpackage :motokode-db
+(defpackage :motokode.db
   (:use :cl :motokode)
+  (:import-from :motokode.author #:author)
+  (:import-from :motokode.code #:code
+                               #:project
+                               #:snippet
+                               #:raw)
+  (:import-from :motokode.user #:user)
   (:import-from :postmodern #:deftable
                             #:!dao-def
                             #:!foreign))
 
-(in-package :motokode-db)
+(in-package :motokode.db)
 
 (deftable author (!dao-def))
 

@@ -1,3 +1,2 @@
 (defpackage #:motokode
   (:use #:cl))
-

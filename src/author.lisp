@@ -1,4 +1,10 @@
-(in-package :motokode)
+(defpackage :motokode.author
+  (:use :cl)
+  (:import-from :postmodern :insert-dao)
+  (:export #:author
+           #:import-author))
+
+(in-package :motokode.author)
 
 (defclass author ()
   ((name :col-type string :initarg :name :accessor author-name)
@@ -10,3 +16,15 @@
    (location :col-type string :initarg :location :accessor author-location))
   (:metaclass postmodern:dao-class)
   (:keys email))
+
+(defgeneric import-author (id)
+  (:documentation "Import author metadata from github, if available.")
+  (:method ((id string))
+    (alexandria:if-let (result (github-user:get-user :id id))
+      (insert-dao (make-instance 'author :name (getf result :name)
+                                         :email (getf result :email)
+                                         :alias (getf result :login)
+                                         :company (getf result :company)
+                                         :website (getf result :blog)
+                                         :location (getf result :location)))
+      (error 'no-such-author))))
