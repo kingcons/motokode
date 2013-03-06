@@ -11,6 +11,8 @@
                (:file "author")
                (:file "code")
                (:file "user")
+               (:file "tables")
+               (:file "util")
                (:file "motokode"))
   :in-order-to ((test-op (load-op famiclom-tests)))
   :perform (test-op :after (op c)
