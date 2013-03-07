@@ -4,10 +4,16 @@
   "A shorthand for string formatting."
   (apply 'format nil fmt-str args))
 
+(defmacro do-lines ((var file &key (element-type 'base-char)) &body body)
+  "Open FILE and bind the input to a stream VAR with the given ELEMENT-TYPE.
+Then loop over each line and execute BODY which should be a LOOP clause."
+  `(with-open-file (,var ,file :element-type ,element-type)
+     (loop for line = (read-line ,var nil) while line
+          ,@body)))
+
 (defun read-lines (file)
-  "Collects each line in FILE into a list."
-  (with-open-file (in file)
-    (loop for line = (read-line in nil) while line collect line)))
+  "Collect each line in FILE into a list."
+  (do-lines (in file) collect line))
 
 (defun run-program (program &rest args)
   "Take a PROGRAM and execute the corresponding shell command. If ARGS is
