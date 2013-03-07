@@ -6,9 +6,17 @@
   :version "0.0.1"
   :pathname "src/"
   :serial t
-  :depends-on (:restas :postmodern :closure-template
-               :inferior-shell :zs3 :cl-github-v3)
+  :depends-on (:restas
+               :postmodern
+               :closure-template
+               :inferior-shell
+               :alexandria
+               :cl-fad
+               :zs3
+               :cl-github-v3)
   :components ((:file "package")
+               (:file "s3")
+               (:file "github")
                (:file "author")
                (:file "code")
                (:file "user")
