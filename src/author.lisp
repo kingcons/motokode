@@ -1,12 +1,4 @@
-(defpackage :motokode.author
-  (:use :cl)
-  (:import-from :postmodern #:insert-dao
-                            #:get-dao)
-  (:export #:author
-           #:import-author
-           #:maybe-import-author))
-
-(in-package :motokode.author)
+(in-package :motokode.models)
 
 (defclass author ()
   ((name :col-type string :initarg :name

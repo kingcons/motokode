@@ -1,8 +1,4 @@
-(defpackage motokode.user
-  (:use :cl)
-  (:export #:user))
-
-(in-package :motokode.user)
+(in-package :motokode.models)
 
 (defclass user ()
   ((bio :initarg :bio :col-type string

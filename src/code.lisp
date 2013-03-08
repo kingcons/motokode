@@ -1,10 +1,4 @@
-(defpackage :motokode.code
-  (:use :cl)
-  (:import-from :alexandria #:when-let*)
-  (:import-from :postmodern #:insert-dao)
-  (:export #:code #:project #:snippet #:raw))
-
-(in-package :motokode.code)
+(in-package :motokode.models)
 
 ;; github repo has:
 ;; FORK - we probably want to only pull in original stuff, not forks
@@ -61,7 +55,7 @@
   (when-let* ((result (github-gist:get-gist :id id))
               (author (getf (getf result :user) :login))
               (files (rest (getf result :files))))
-    (motokode.author:maybe-import-author author)
+    (maybe-import-author author)
     (let ((code (make-instance 'snippet :url (getf result :html-url)
                                         :name id
                                         :author author
@@ -79,7 +73,7 @@
   (destructuring-bind (owner repo) id
     (when-let* ((result (github-repo:get-repository :owner owner :repo repo))
                 (author (getf (getf result :owner) :login)))
-      (motokode.author:maybe-import-author author)
+      (maybe-import-author author)
       (let ((code (make-instance 'project :url (getf result :html-url)
                                           :name (getf result :name)
                                           :author author

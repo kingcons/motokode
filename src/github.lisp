@@ -3,6 +3,8 @@
   (:export #:save-repo
            #:save-gist))
 
+(in-package :motokode.github)
+
 (defun save-repo (owner repo path)
   "Save OWNER's REPO to PATH under (current-directory)."
   (let ((bytes (github-repo:get-archive :owner owner :repo repo)))

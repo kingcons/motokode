@@ -1,11 +1,11 @@
 (defpackage :motokode.db
-  (:use :cl :motokode)
-  (:import-from :motokode.author #:author)
-  (:import-from :motokode.code #:code
-                               #:project
-                               #:snippet
-                               #:raw)
-  (:import-from :motokode.user #:user)
+  (:use :cl)
+  (:import-from :motokode.models #:author
+                                 #:code
+                                 #:project
+                                 #:snippet
+                                 #:raw
+                                 #:user)
   (:import-from :postmodern #:deftable
                             #:!dao-def
                             #:!foreign))
