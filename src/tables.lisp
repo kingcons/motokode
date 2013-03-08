@@ -5,6 +5,7 @@
                                  #:project
                                  #:snippet
                                  #:raw
+                                 #:reader
                                  #:user)
   (:import-from :postmodern #:deftable
                             #:!dao-def
@@ -23,3 +24,8 @@
 (deftable raw (!dao-def))
 
 (deftable user (!dao-def))
+
+(deftable reader
+  (!dao-def)
+  (!foreign 'user 'user :primary-key)
+  (!foreign 'code 'code :primary-key))
