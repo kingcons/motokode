@@ -53,3 +53,7 @@ an UNWIND-PROTECT, then change back to the current directory."
                          (setf (current-directory) ,path)
                          ,@body)
          (setf (current-directory) ,old)))))
+
+(defun construct (class args)
+  "Everything is better with a little more indirection."
+  (apply 'make-instance class args))

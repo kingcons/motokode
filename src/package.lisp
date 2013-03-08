@@ -7,7 +7,7 @@
 (defpackage #:motokode.models
   (:use :cl)
   (:import-from :postmodern #:insert-dao #:get-dao)
-  (:import-from :alexandria #:when-let*)
+  (:import-from :motokode #:construct)
   (:export #:author
            #:code
            #:project

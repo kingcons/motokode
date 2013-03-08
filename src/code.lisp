@@ -52,16 +52,10 @@
   (:method :before (code) (insert-dao code)))
 
 (defmethod import-code ((id string))
-  (when-let* ((result (github-gist:get-gist :id id))
-              (author (getf (getf result :user) :login))
-              (files (rest (getf result :files))))
-    (maybe-import-author author)
-    (let ((code (make-instance 'snippet :url (getf result :html-url)
-                                        :name id
-                                        :author author
-                                        :language (getf (first files) :language)
-                                        :description (getf result :description))))
-      (persist code))))
+  (let* ((gist (motokode.github:get-gist id))
+         (code (construct 'snippet gist)))
+    (maybe-import-author (code-author code))
+    (persist code)))
 
 (defmethod persist ((code snippet))
   (with-accessors ((author code-author)) code
@@ -70,16 +64,10 @@
       (motokode.s3:extract-and-upload "gist.tar.gz" destination :snippet))))
 
 (defmethod import-code ((id list))
-  (destructuring-bind (owner repo) id
-    (when-let* ((result (github-repo:get-repository :owner owner :repo repo))
-                (author (getf (getf result :owner) :login)))
-      (maybe-import-author author)
-      (let ((code (make-instance 'project :url (getf result :html-url)
-                                          :name (getf result :name)
-                                          :author author
-                                          :language (getf result :language)
-                                          :description (getf result :description))))
-        (persist code)))))
+  (let* ((repo (motokode.github:get-repo id))
+         (code (construct 'project repo)))
+    (maybe-import-author (code-author code))
+    (persist code)))
 
 (defmethod persist ((code project))
   (with-accessors ((author code-author)
