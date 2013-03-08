@@ -1,6 +1,6 @@
 (defpackage :motokode.code
   (:use :cl)
-  (:import-from :alexandria #:when-let)
+  (:import-from :alexandria #:when-let*)
   (:import-from :postmodern #:insert-dao)
   (:export #:code #:project #:snippet #:raw))
 

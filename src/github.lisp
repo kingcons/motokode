@@ -13,4 +13,3 @@
   ;; KLUDGE: Github's API lacks a gist get. Completely naive fetch.
   (let ((bytes (drakma:http-request (format nil "~a/download" url))))
     (alexandria:write-byte-vector-into-file bytes path)))
-
